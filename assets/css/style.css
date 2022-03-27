@@ -3,6 +3,10 @@
     font-style: normal;
 }
 
+body{
+    background-color: #F2F2F2;
+}
+
 input:focus::placeholder {
   color: transparent;
 }
@@ -177,7 +181,7 @@ tbody td {
     text-align: initial; 
     padding-left: 7px; 
     border-bottom: 1px solid #D8D8D8; 
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 
 .styleInput{
@@ -756,4 +760,72 @@ input[type="date"]{
     right: 70px;
     top: 16px;
     display: none;
+}
+
+.dashboardCards{
+    background-color: white; 
+    border-radius: 2px; 
+    padding: 10px;
+    height: 105px; 
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.dashboardCardsCount{
+    margin-bottom: 0; 
+    font-size: 16px; 
+    font-weight: 500; 
+    margin-top: 5px;
+}
+
+.dashboardCardsName{
+    margin-bottom: 0; 
+    font-size: 11px; 
+    font-weight: 500; 
+    color: #42A4DF;
+}
+
+.othersBg{
+    margin-right: 5px;
+    height: 28px; 
+    width: 28px; 
+    background: #F4F4F4; 
+    color: black; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 13px; 
+    font-weight: 500;
+}
+
+.completedBg{
+    margin-right: 5px;
+    height: 28px; 
+    width: 28px; 
+    background: #47CA5B; 
+    color: white; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 13px; 
+    font-weight: 500;
+}
+
+.missedBg{
+    margin-right: 5px;
+    height: 28px; 
+    width: 28px; 
+    background: #EF3C3C; 
+    color: white; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 13px; 
+    font-weight: 500;
+}
+
+.consultantRankingTable thead th{
+    border-bottom: none !important;
 }

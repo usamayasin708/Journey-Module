@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- Date Range Picker CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <!-- Donut Chart CDN -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <title>JourneyPlanner</title>
 </head>
@@ -1021,7 +1023,8 @@
         </div>
 
         <!-- Delete Grid Journey Modal -->
-        <div class="modal fade" id="gridDelJourneyModal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="gridDelJourneyModal" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1346,6 +1349,7 @@
 
                             </div>
                         </div>
+
                     </div>
 
                     <div class="modal-footer">
@@ -1381,9 +1385,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 
     <!-- Grid View -->
@@ -1643,9 +1644,9 @@
                     <div class="col-12">
                         <div class="card-header collapsed border-0" data-toggle="collapse" href="#collapseTomorrow">
                             <a class="card-title">Tomorrow (6)</a>
-                            <img class="mr-3 delDestinationTomorrow modalInModal" data-backdrop="static" data-keyboard="false"
-                                data-toggle="modal" data-target="#gridDelJourneyModal" src="./assets/images/bin.png"
-                                style="display: none;">
+                            <img class="mr-3 delDestinationTomorrow modalInModal" data-backdrop="static"
+                                data-keyboard="false" data-toggle="modal" data-target="#gridDelJourneyModal"
+                                src="./assets/images/bin.png" style="display: none;">
                         </div>
                         <div id="collapseTomorrow" class="card-body collapse" data-parent="#accordion"
                             style="background-color: rgba(0,0,0,.03);">
@@ -1892,9 +1893,9 @@
                     <div class="col-12">
                         <div class="card-header collapsed border-0" data-toggle="collapse" href="#collapseDueSoon">
                             <a class="card-title">Due Soon (15)</a>
-                            <img class="mr-3 delDestinationDuesoon modalInModal" data-backdrop="static" data-keyboard="false"
-                                data-toggle="modal" data-target="#gridDelJourneyModal" src="./assets/images/bin.png"
-                                style="display: none;">
+                            <img class="mr-3 delDestinationDuesoon modalInModal" data-backdrop="static"
+                                data-keyboard="false" data-toggle="modal" data-target="#gridDelJourneyModal"
+                                src="./assets/images/bin.png" style="display: none;">
                         </div>
                         <div id="collapseDueSoon" class="card-body collapse" data-parent="#accordion"
                             style="background-color: rgba(0,0,0,.03);">
@@ -2141,9 +2142,9 @@
                     <div class="col-12">
                         <div class="card-header collapsed border-0" data-toggle="collapse" href="#collapseUpcoming">
                             <a class="card-title">Upcoming (35)</a>
-                            <img class="mr-3 delDestinationUpcoming modalInModal" data-backdrop="static" data-keyboard="false"
-                                data-toggle="modal" data-target="#gridDelJourneyModal" src="./assets/images/bin.png"
-                                style="display: none;">
+                            <img class="mr-3 delDestinationUpcoming modalInModal" data-backdrop="static"
+                                data-keyboard="false" data-toggle="modal" data-target="#gridDelJourneyModal"
+                                src="./assets/images/bin.png" style="display: none;">
                         </div>
                         <div id="collapseUpcoming" class="card-body collapse" data-parent="#accordion"
                             style="background-color: rgba(0,0,0,.03);">
@@ -2390,9 +2391,9 @@
                     <div class="col-12">
                         <div class="card-header collapsed border-0" data-toggle="collapse" href="#collapseCompleted">
                             <a class="card-title">Completed (40)</a>
-                            <img class="mr-3 delDestinationCompleted modalInModal" data-backdrop="static" data-keyboard="false"
-                                data-toggle="modal" data-target="#gridDelJourneyModal" src="./assets/images/bin.png"
-                                style="display: none;">
+                            <img class="mr-3 delDestinationCompleted modalInModal" data-backdrop="static"
+                                data-keyboard="false" data-toggle="modal" data-target="#gridDelJourneyModal"
+                                src="./assets/images/bin.png" style="display: none;">
                         </div>
                         <div id="collapseCompleted" class="card-body collapse" data-parent="#accordion"
                             style="background-color: rgba(0,0,0,.03);">
@@ -2639,9 +2640,9 @@
                     <div class="col-12">
                         <div class="card-header collapsed border-0" data-toggle="collapse" href="#collapseMissed">
                             <a class="card-title">Missed (2)</a>
-                            <img class="mr-3 delDestinationMissed modalInModal" data-backdrop="static" data-keyboard="false"
-                                data-toggle="modal" data-target="#gridDelJourneyModal" src="./assets/images/bin.png"
-                                style="display: none;">
+                            <img class="mr-3 delDestinationMissed modalInModal" data-backdrop="static"
+                                data-keyboard="false" data-toggle="modal" data-target="#gridDelJourneyModal"
+                                src="./assets/images/bin.png" style="display: none;">
                         </div>
                         <div id="collapseMissed" class="card-body collapse" data-parent="#accordion"
                             style="background-color: rgba(0,0,0,.03);">
@@ -2888,6 +2889,387 @@
     </div>
 
 
+    <!-- Dashboard -->
+    <div class="container mt-5 mb-5">
+        <!-- Counts -->
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/journeys.png" />
+                            <p class="dashboardCardsCount">200</p>
+                            <p class="dashboardCardsName">TOTAL JOURNEYS</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/destinations.png" />
+                            <p class="dashboardCardsCount">300</p>
+                            <p class="dashboardCardsName">TOTAL DESTINATIONS</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/today.png" />
+                            <p class="dashboardCardsCount">100</p>
+                            <p class="dashboardCardsName">TODAY’S JOURNEYS</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/tomorrow.png" />
+                            <p class="dashboardCardsCount">400</p>
+                            <p class="dashboardCardsName">TOMORROW JOURNEYS</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/tomorrow.png" />
+                            <p class="dashboardCardsCount">400</p>
+                            <p class="dashboardCardsName">DUE SOON</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/today.png" />
+                            <p class="dashboardCardsCount">100</p>
+                            <p class="dashboardCardsName">UPCOMING</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/tomorrow.png" />
+                            <p class="dashboardCardsCount">400</p>
+                            <p class="dashboardCardsName">COMPLETED</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-lg-3 text-center pr-2 pl-2 mb-3">
+                        <div class="dashboardCards">
+                            <img src="./assets/images/tomorrow.png" />
+                            <p class="dashboardCardsCount">400</p>
+                            <p class="dashboardCardsName">MISSED</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-4">
+                <div class="dashboardCards" style="height: 225px;">
+                    <div class="d-flex align-items-center">
+                        <h6 style="font-size: 13px; font-weight: 500; margin-bottom: 0; margin-left: 5px;">Destinations
+                            status
+                        </h6>
+
+                        <select class="form-select form-select-sm ml-auto" aria-label=".form-select-sm example"
+                            style="width: 97px !important; height: 22px !important; font-size: 11px; font-weight: 500; border: 1px solid #D8D8D8; border-radius: 2px; color: black;">
+                            <option value="">This week</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <!-- <div id="donutChartJourneyDashboard" class="mt-md-4 mt-lg-0" style="margin-top: -26px; text-align: -webkit-center;">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="row mt-4 mb-4">
+            <div class="col-lg-7 col-md-12 p-0">
+                <div id="showDestinationMap"></div>
+            </div>
+
+            <div class="col-lg-5 col-md-12 customScrollbar" style="height: 60vh; overflow: auto;">
+
+                <div class="d-flex align-items-center newDestinations mb-2 bg-white">
+
+                    <div class="media align-items-center destination" style="width: -webkit-fill-available;">
+                        <div class="media-body">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mt-0">Journey title</h5>
+                                <p class="journeyDate pl-2 pr-2 ml-auto mr-2">
+                                    27/09/2021</p>
+                                <p class="statusToday pl-2 pr-2">
+                                    Today</p>
+                            </div>
+
+                            <div class="d-flex">
+                                <p class="gridCardDescription mt-1 mb-1">Journey comment if
+                                    exists
+                                    Journey <br>
+                                    comment if exists...</p>
+                                <div class="consultantUser ml-auto mt-1" style="position: absolute; right: 22px;">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <p class="labels mr-1" style="font-size: 11px; margin-top: 1px;">
+                                    To:
+                                </p>
+
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <p class="mb-0">Blasie Defloo</p>
+                                </div>
+
+                                <p class="addDestination ml-auto clicktoShowDestinations"
+                                    style="font-size: 11px; color: #1B8BCE; cursor: pointer; align-items: center; display: flex;">
+                                    Destinations <i class="fa fa-angle-down ml-2" aria-hidden="true"
+                                        style="font-size: 15px;"></i></p>
+                            </div>
+
+                            <div class="toggleDestinations mt-3" style="display: none;">
+                                <div class="d-flex align-items-center newDestinations mb-2">
+                                    <input type="checkbox" class="mr-3" id="delDestinationCheckbox">
+
+                                    <div class="media align-items-center destination">
+                                        <img class="mr-3" src="./assets/images/iu.png">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Site A001</h5>
+                                            <p>Access to pump 26BT4585</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ml-auto">
+                                        <p class="destinationTime mb-1" style="color: #47CA5B;">Completed</p>
+                                        <img src="./assets/images/dragdots.png" class="float-right" style="width: 8px; height: 13px;">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center newDestinations mb-2">
+                                    <input type="checkbox" class="mr-3" id="delDestinationCheckbox">
+
+                                    <div class="media align-items-center destination">
+                                        <img class="mr-3" src="./assets/images/iu.png">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Site A001</h5>
+                                            <p>Access to pump 26BT4585</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="ml-auto">
+                                        <img src="./assets/images/dragdots.png" class="float-right" style="width: 8px; height: 13px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center newDestinations mb-2 bg-white">
+
+                    <div class="media align-items-center destination" style="width: -webkit-fill-available;">
+                        <div class="media-body">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mt-0">Journey title</h5>
+                                <p class="journeyDate pl-2 pr-2 ml-auto mr-2">
+                                    27/09/2021</p>
+                                <p class="statusToday pl-2 pr-2">
+                                    Today</p>
+                            </div>
+
+                            <div class="d-flex">
+                                <p class="gridCardDescription mt-1 mb-1">Journey comment if
+                                    exists
+                                    Journey <br>
+                                    comment if exists...</p>
+                                <div class="consultantUser ml-auto mt-1" style="position: absolute; right: 22px;">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <p class="labels mr-1" style="font-size: 11px; margin-top: 1px;">
+                                    To:
+                                </p>
+
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <p class="mb-0">Blasie Defloo</p>
+                                </div>
+
+                                <p class="addDestination ml-auto"
+                                    style="font-size: 11px; color: #1B8BCE; cursor: pointer; align-items: center; display: flex;">
+                                    Destinations <i class="fa fa-angle-down ml-2" aria-hidden="true"
+                                        style="font-size: 15px;"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center newDestinations mb-2 bg-white">
+
+                    <div class="media align-items-center destination" style="width: -webkit-fill-available;">
+                        <div class="media-body">
+                            <div class="d-flex align-items-center">
+                                <h5 class="mt-0">Journey title</h5>
+                                <p class="journeyDate pl-2 pr-2 ml-auto mr-2">
+                                    27/09/2021</p>
+                                <p class="statusToday pl-2 pr-2">
+                                    Today</p>
+                            </div>
+
+                            <div class="d-flex">
+                                <p class="gridCardDescription mt-1 mb-1">Journey comment if
+                                    exists
+                                    Journey <br>
+                                    comment if exists...</p>
+                                <div class="consultantUser ml-auto mt-1" style="position: absolute; right: 22px;">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img class="mr-2" src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <p class="labels mr-1" style="font-size: 11px; margin-top: 1px;">
+                                    To:
+                                </p>
+
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';">
+                                    <p class="mb-0">Blasie Defloo</p>
+                                </div>
+
+                                <p class="addDestination ml-auto"
+                                    style="font-size: 11px; color: #1B8BCE; cursor: pointer; align-items: center; display: flex;">
+                                    Destinations <i class="fa fa-angle-down ml-2" aria-hidden="true"
+                                        style="font-size: 15px;"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="bg-white" style="width: 100%; height: 297px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);">
+                    <div class="d-flex align-items-center m-2 pt-3">
+                        <img src="./assets/images/ranking.png" class="img-fluid" style="border-radius: 0;" />
+                        <h6
+                            style="margin: 0 0 0 13px; font-size: 12px; color: #313131; font-weight: 600; color: #313131;">
+                            Consultant ranking</h6>
+                    </div>
+                    <div class="customScrollbar" style="overflow: auto; height: 245px;">
+
+                        <table class="consultantRankingTable table mt-2">
+                            <thead
+                                style="color:#ADADAD; border-top: 1px solid #EDEDED; border-bottom: 1px solid #EDEDED; background:white;">
+                                <tr>
+                                    <th>N°</th>
+                                    <th>CONSULTANT</th>
+                                    <th>JOURNEYS</th>
+                                    <th>DESTINATIONS</th>
+                                    <th>TODAY</th>
+                                    <th>TOMORROW</th>
+                                    <th>DUE SOON</th>
+                                    <th>UPCOMING</th>
+                                    <th>COMPLETED</th>
+                                    <th>MISSED</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table">
+                                <tr>
+                                    <td scope="row">
+                                        1</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <div class="my-auto" style="margin-right: 6px;">
+                                                <img src="./assets/images/user.png" class="img-fluid"
+                                                    style="object-fit: cover;" />
+                                            </div>
+                                            <div class="text-left my-auto">
+                                                <div class="fs-12 fw-400"
+                                                    style="color: #565656; font-weight: 500; font-size: 11px;">Pete D.
+                                                    Gregory
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="othersBg">
+                                            1
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="othersBg">
+                                            2
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="othersBg">
+                                            3
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="othersBg">
+                                            4
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="othersBg">
+                                            5
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="othersBg">
+                                            6
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="completedBg">
+                                            7
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="missedBg">
+                                            8
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -2905,6 +3287,7 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWz4MXEMykzJcVA6Wy24DXh2v1QyTzkyM&libraries=places&callback=initialize"
         async defer></script>
+
 </body>
 
 </html>

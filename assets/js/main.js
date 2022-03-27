@@ -362,3 +362,46 @@ $(document).ready(function () {
         $(colToHide).toggle();
     });
 });
+
+
+
+//===Donut Chart===//
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+        ['Mushrooms', 3],
+        ['Onions', 1],
+        ['Olives', 1],
+        ['Zucchini', 1],
+        ['Pepperoni', 2]
+    ]);
+
+    var options = {
+        'title': '',
+        'width': 400,
+        'height': 300,
+        pieHole: 0.3,
+
+        legend: {
+            alignment: 'center',
+            position: 'top',
+            maxLines: 1,
+            position: 'center',
+            textStyle: {
+                fontSize: 12
+            }
+        },
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('donutChartJourneyDashboard'));
+    chart.draw(data, options);
+}
+
+//===Toggle Destinations on Dashboard===//
+$(document).on('click', '.clicktoShowDestinations', function () {
+    $(".toggleDestinations").toggle();
+});
