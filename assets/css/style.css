@@ -829,3 +829,61 @@ input[type="date"]{
 .consultantRankingTable thead th{
     border-bottom: none !important;
 }
+
+.highcharts-contextbutton, .highcharts-credits{
+    display: none;
+}
+
+
+
+.multiselect {
+  width: 100%;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 150px;
+  height: 30px;
+  color: #313131;
+    border: 1px solid #D8D8D8;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: white !important;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#mySelectOptions {
+  display: none;
+  /* border: 0.5px #7c7c7c solid; */
+  background-color: #ffffff;
+  max-height: 300px;
+  overflow-y: auto;
+  position: absolute;
+  padding-top: 12px;
+}
+
+#mySelectOptions label {
+  display: block;
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  background-color: #ffffff00;
+  padding: 0 2.25rem 0 .75rem;
+  /* padding: .375rem 2.25rem .375rem .75rem; */
+}
+
+#mySelectOptions label:hover {
+  background-color: #F2F2F2;
+}

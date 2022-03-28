@@ -202,129 +202,315 @@ $(document).on('click', ".modalInModal", function () {
 });
 
 //===Add Destinations Google Map===//
+
+
+
+
 function initialize() {
-    var markers = [];
-    var map = new google.maps.Map(document.getElementById('addDestinationMap'), {
+    var myLatlng = new google.maps.LatLng(41.015137, 28.979530);
+    var myOptions = {
+        zoom: 10,
+        center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("addDestinationMap"), myOptions);
+    addMarker(myLatlng, 'Default Marker', map);
+    map.addListener('click', function (event) {
+        addMarker(event.latLng, 'Click Generated Marker', map);
     });
 
-    var defaultBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(-33.8902, 151.1759),
-        new google.maps.LatLng(-33.8474, 151.2631));
-    map.fitBounds(defaultBounds);
-
-    // Create the search box and link it to the UI element.
-    var input = /** @type {HTMLInputElement} */(
-        document.getElementById('mapSearchInput'));
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    var searchBox = new google.maps.places.SearchBox(
-    /** @type {HTMLInputElement} */(input));
-    google.maps.event.addListener(searchBox, 'places_changed', function () {
-        var places = searchBox.getPlaces();
-
-        if (places.length == 0) {
-            return;
-        }
-        for (var i = 0, marker; marker = markers[i]; i++) {
-            marker.setMap(null);
-        }
-
-        // For each place, get the icon, place name, and location.
-        markers = [];
-        var bounds = new google.maps.LatLngBounds();
-        for (var i = 0, place; place = places[i]; i++) {
-            var image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            var marker = new google.maps.Marker({
-                map: map,
-                icon: image,
-                title: place.name,
-                position: place.geometry.location
-            });
-
-            markers.push(marker);
-
-            bounds.extend(place.geometry.location);
-        }
-
-        map.fitBounds(bounds);
-    });
-    google.maps.event.addListener(map, 'bounds_changed', function () {
-        var bounds = map.getBounds();
-        searchBox.setBounds(bounds);
-    });
+    new google.maps.places.SearchBox(document.getElementById('mapSearchInput'));
 }
+
+
+var input = (
+    document.getElementById('mapSearchInput'));
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+var searchBox = new google.maps.places.SearchBox(
+    (input));
+google.maps.event.addListener(searchBox, 'places_changed', function () {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+        return;
+    }
+    for (var i = 0, marker; marker = markers[i]; i++) {
+        marker.setMap(null);
+    }
+
+    // For each place, get the icon, place name, and location.
+    markers = [];
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0, place; place = places[i]; i++) {
+        // var image = {
+        //     url: place.icon,
+        //     size: new google.maps.Size(71, 71),
+        //     origin: new google.maps.Point(0, 0),
+        //     anchor: new google.maps.Point(17, 34),
+        //     scaledSize: new google.maps.Size(25, 25)
+        // };
+
+        // Create a marker for each place.
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     icon: image,
+        //     title: place.name,
+        //     position: place.geometry.location,
+        //     draggable: true,
+        // });
+
+        markers.push(marker);
+
+        bounds.extend(place.geometry.location);
+    }
+
+    map.fitBounds(bounds);
+});
+google.maps.event.addListener(map, 'bounds_changed', function () {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+});
+
+
+function addMarker(latlng, title, map) {
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: title,
+        draggable: true
+    });
+    marker.addListener('drag', function (event) {
+        $('#mapSearchInputdd').val('lat=' + event.latLng.lat() + '-' + 'long=' + event.latLng.lng());
+        // $('#lng').val(event.latLng.lng());
+    });
+    // marker.addListener('dragend', function (event) {
+    //     $('#lat').val(event.latLng.lat());
+    //     $('#lng').val(event.latLng.lng());
+    //     var x = event.latLng.lat();
+    //     var y = event.latLng.lng();
+    //     $("#results").append($('<div>').text(event.latLng.toUrlValue()).data('latlng', event.latLng).click(function () { marker.setPosition($(this).data('latlng')); }));
+    // });
+};
+
+
+
+
+
+// function initialize() {
+
+//         var markers = [];
+//     // var map = new google.maps.Map(document.getElementById('addDestinationMapdd'), {
+//     //     mapTypeId: google.maps.MapTypeId.ROADMAP
+//     // });
+
+//     // var defaultBounds = new google.maps.LatLngBounds(
+//     //     new google.maps.LatLng(-33.8902, 151.1759),
+//     //     new google.maps.LatLng(-33.8474, 151.2631));
+//     // map.fitBounds(defaultBounds);
+//     // Creating map object
+//     var map = new google.maps.Map(document.getElementById('addDestinationMap'), {
+//         zoom: 12,
+//         center: new google.maps.LatLng(28.47399, 77.026489),
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     });
+//     // creates a draggable marker to the given coords
+//     // var vMarker = new google.maps.Marker({
+//     //     position: new google.maps.LatLng(28.47399, 77.026489),
+//     //     draggable: true
+//     // });
+
+//     var input = (
+//         document.getElementById('mapSearchInput'));
+//     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+//     var searchBox = new google.maps.places.SearchBox(
+//         (input));
+//     google.maps.event.addListener(searchBox, 'places_changed', function () {
+//         var places = searchBox.getPlaces();
+
+//         if (places.length == 0) {
+//             return;
+//         }
+//         for (var i = 0, marker; marker = markers[i]; i++) {
+//             marker.setMap(null);
+//         }
+
+//         // For each place, get the icon, place name, and location.
+//         markers = [];
+//         var bounds = new google.maps.LatLngBounds();
+//         for (var i = 0, place; place = places[i]; i++) {
+//             var image = {
+//                 url: place.icon,
+//                 size: new google.maps.Size(71, 71),
+//                 origin: new google.maps.Point(0, 0),
+//                 anchor: new google.maps.Point(17, 34),
+//                 scaledSize: new google.maps.Size(25, 25)
+//             };
+
+//             // Create a marker for each place.
+//             var marker = new google.maps.Marker({
+//                 map: map,
+//                 icon: image,
+//                 title: place.name,
+//                 position: place.geometry.location,
+//                 draggable: true,
+//             });
+
+//             markers.push(marker);
+
+//             bounds.extend(place.geometry.location);
+//         }
+
+//         map.fitBounds(bounds);
+//     });
+
+//     google.maps.event.addListener(map, 'bounds_changed', function () {
+//         var bounds = map.getBounds();
+//         searchBox.setBounds(bounds);
+//     });
+//     // adds a listener to the marker
+//     // gets the coords when drag event ends
+//     // then updates the input with the new coords
+//     google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+//         $("#mapSearchInputdd").val('lat=' + evt.latLng.lat().toFixed(6) + ", " + 'long=' + evt.latLng.lng().toFixed(6));
+//         // $("#mapSearchInput").val(evt.latLng.lng().toFixed(6));
+//         map.panTo(evt.latLng);
+//     });
+//     // centers the map on markers coords
+//     map.setCenter(vMarker.position);
+//     // adds the marker on the map
+//     vMarker.setMap(map);
+// }
+
+
+
+
+
+// function initialize() {
+//     var markers = [];
+//     var map = new google.maps.Map(document.getElementById('addDestinationMapdd'), {
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     });
+
+//     var defaultBounds = new google.maps.LatLngBounds(
+//         new google.maps.LatLng(-33.8902, 151.1759),
+//         new google.maps.LatLng(-33.8474, 151.2631));
+//     map.fitBounds(defaultBounds);
+
+//     // Create the search box and link it to the UI element.
+//     var input = (
+//         document.getElementById('mapSearchInputdd'));
+//     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+//     var searchBox = new google.maps.places.SearchBox(
+//         (input));
+//     google.maps.event.addListener(searchBox, 'places_changed', function () {
+//         var places = searchBox.getPlaces();
+
+//         if (places.length == 0) {
+//             return;
+//         }
+//         for (var i = 0, marker; marker = markers[i]; i++) {
+//             marker.setMap(null);
+//         }
+
+//         // For each place, get the icon, place name, and location.
+//         markers = [];
+//         var bounds = new google.maps.LatLngBounds();
+//         for (var i = 0, place; place = places[i]; i++) {
+//             var image = {
+//                 url: place.icon,
+//                 size: new google.maps.Size(71, 71),
+//                 origin: new google.maps.Point(0, 0),
+//                 anchor: new google.maps.Point(17, 34),
+//                 scaledSize: new google.maps.Size(25, 25)
+//             };
+
+//             // Create a marker for each place.
+//             var marker = new google.maps.Marker({
+//                 map: map,
+//                 icon: image,
+//                 title: place.name,
+//                 position: place.geometry.location,
+//                 draggable: true,
+//             });
+
+//             markers.push(marker);
+
+//             bounds.extend(place.geometry.location);
+//         }
+
+//         map.fitBounds(bounds);
+//     });
+//     google.maps.event.addListener(map, 'bounds_changed', function () {
+//         var bounds = map.getBounds();
+//         searchBox.setBounds(bounds);
+//     });
+// }
 // google.maps.event.addDomListener(window, 'load', initialize);
 
 //===Show Destinations Google Map===//
-function initialize() {
-    var markers = [];
-    var map = new google.maps.Map(document.getElementById('showDestinationMap'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+// function initialize() {
+//     var markers = [];
+//     var map = new google.maps.Map(document.getElementById('showDestinationMap'), {
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     });
 
-    var defaultBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(-33.8902, 151.1759),
-        new google.maps.LatLng(-33.8474, 151.2631));
-    map.fitBounds(defaultBounds);
+//     var defaultBounds = new google.maps.LatLngBounds(
+//         new google.maps.LatLng(-33.8902, 151.1759),
+//         new google.maps.LatLng(-33.8474, 151.2631));
+//     map.fitBounds(defaultBounds);
 
-    // Create the search box and link it to the UI element.
-    var input = (
-        document.getElementById('mapSearch'));
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+//     // Create the search box and link it to the UI element.
+//     var input = (
+//         document.getElementById('mapSearch'));
+//     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    var searchBox = new google.maps.places.SearchBox(
-        (input));
-    google.maps.event.addListener(searchBox, 'places_changed', function () {
-        var places = searchBox.getPlaces();
+//     var searchBox = new google.maps.places.SearchBox(
+//         (input));
+//     google.maps.event.addListener(searchBox, 'places_changed', function () {
+//         var places = searchBox.getPlaces();
 
-        if (places.length == 0) {
-            return;
-        }
-        for (var i = 0, marker; marker = markers[i]; i++) {
-            marker.setMap(null);
-        }
+//         if (places.length == 0) {
+//             return;
+//         }
+//         for (var i = 0, marker; marker = markers[i]; i++) {
+//             marker.setMap(null);
+//         }
 
-        // For each place, get the icon, place name, and location.
-        markers = [];
-        var bounds = new google.maps.LatLngBounds();
-        for (var i = 0, place; place = places[i]; i++) {
-            var image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
+//         // For each place, get the icon, place name, and location.
+//         markers = [];
+//         var bounds = new google.maps.LatLngBounds();
+//         for (var i = 0, place; place = places[i]; i++) {
+//             var image = {
+//                 url: place.icon,
+//                 size: new google.maps.Size(71, 71),
+//                 origin: new google.maps.Point(0, 0),
+//                 anchor: new google.maps.Point(17, 34),
+//                 scaledSize: new google.maps.Size(25, 25)
+//             };
 
-            // Create a marker for each place.
-            var marker = new google.maps.Marker({
-                map: map,
-                icon: image,
-                title: place.name,
-                position: place.geometry.location
-            });
+//             // Create a marker for each place.
+//             var marker = new google.maps.Marker({
+//                 map: map,
+//                 icon: image,
+//                 title: place.name,
+//                 position: place.geometry.location
+//             });
 
-            markers.push(marker);
+//             markers.push(marker);
 
-            bounds.extend(place.geometry.location);
-        }
+//             bounds.extend(place.geometry.location);
+//         }
 
-        map.fitBounds(bounds);
-    });
-    google.maps.event.addListener(map, 'bounds_changed', function () {
-        var bounds = map.getBounds();
-        searchBox.setBounds(bounds);
-    });
-}
+//         map.fitBounds(bounds);
+//     });
+//     google.maps.event.addListener(map, 'bounds_changed', function () {
+//         var bounds = map.getBounds();
+//         searchBox.setBounds(bounds);
+//     });
+// }
 
 //===Date Range Picker===//
 $(function () {
@@ -366,42 +552,137 @@ $(document).ready(function () {
 
 
 //===Donut Chart===//
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
-    ]);
-
-    var options = {
-        'title': '',
-        'width': 400,
-        'height': 300,
-        pieHole: 0.3,
-
-        legend: {
-            alignment: 'center',
-            position: 'top',
-            maxLines: 1,
-            position: 'center',
-            textStyle: {
-                fontSize: 12
-            }
-        },
-    };
-    var chart = new google.visualization.PieChart(document.getElementById('donutChartJourneyDashboard'));
-    chart.draw(data, options);
-}
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            innerSize: '70%',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemMarginTop: 10,
+        itemMarginBottom: 10
+    },
+    series: [{
+        // dataLabels: {
+        //     enabled: true,
+        //     formatter: function () {
+        //         return Math.round(this.percentage * 100) / 100 + ' %';
+        //     },
+        //     distance: 10,
+        //     color: 'white'
+        // },
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Chrome',
+            y: 61.41,
+            sliced: false,
+            selected: true
+        }, {
+            name: 'Internet Explorer',
+            y: 11.84
+        }, {
+            name: 'Firefox',
+            y: 10.85
+        }]
+    }]
+});
 
 //===Toggle Destinations on Dashboard===//
 $(document).on('click', '.clicktoShowDestinations', function () {
     $(".toggleDestinations").toggle();
+});
+
+//===Multi Select Dropdown==//
+window.onload = (event) => {
+    initMultiselect();
+};
+
+function initMultiselect() {
+    checkboxStatusChange();
+
+    document.addEventListener("click", function (evt) {
+        var flyoutElement = document.getElementById('myMultiselect'),
+            targetElement = evt.target;
+
+        do {
+            if (targetElement == flyoutElement) {
+                return;
+            }
+            targetElement = targetElement.parentNode;
+        } while (targetElement);
+
+        toggleCheckboxArea(true);
+    });
+}
+
+function checkboxStatusChange() {
+    var multiselect = document.getElementById("mySelectLabel");
+    var multiselectOption = multiselect.getElementsByTagName('option')[0];
+
+    var values = [];
+    var checkboxes = document.getElementById("mySelectOptions");
+    var checkedCheckboxes = checkboxes.querySelectorAll('input[type=checkbox]:checked');
+
+    for (const item of checkedCheckboxes) {
+        var checkboxValue = item.getAttribute('value');
+        values.push(checkboxValue);
+    }
+
+    var dropdownValue = "Select consultant";
+    if (values.length > 0) {
+        dropdownValue = values.join(', ');
+    }
+
+    multiselectOption.innerText = dropdownValue;
+}
+
+function toggleCheckboxArea(onlyHide = false) {
+    var checkboxes = document.getElementById("mySelectOptions");
+    var displayValue = checkboxes.style.display;
+
+    if (displayValue != "block") {
+        if (onlyHide == false) {
+            checkboxes.style.display = "block";
+        }
+    } else {
+        checkboxes.style.display = "none";
+    }
+}
+
+//===Search in Multi Select Dropdown===//
+$(document).on('click', '.searchMultiselectButton', function () {
+    $('.searchDivs p').hide();
+    var txt = $('.searchMultiselect').val();
+    $('.searchDivs p').each(function () {
+        if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+            $(this).show();
+        }
+    });
 });

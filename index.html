@@ -15,7 +15,9 @@
     <!-- Date Range Picker CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
     <!-- Donut Chart CDN -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
 
     <title>JourneyPlanner</title>
 </head>
@@ -106,10 +108,69 @@
                     <option value="">No comments</option>
                 </select>
 
-                <select class="form-select form-select-sm selectDropdown mr-2" id=""
+                <!-- <select class="form-select form-select-sm selectDropdown mr-2" id=""
                     aria-label=".form-select-sm example">
                     <option value="1">Select consultant</option>
-                </select>
+                </select> -->
+
+                <div class="form-group">
+                    <div id="myMultiselect" class="multiselect">
+                        <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                            <select class="form-select mr-2">
+                                <option>somevalue</option>
+                            </select>
+                            <div class="overSelect"></div>
+                        </div>
+                        <div id="mySelectOptions" class="customScrollbar">
+
+                            <div class="ml-2 mr-2 mb-2 mt-1">
+                                <p class="labels"> Select consultant </p>
+                                <input type="text" class="styleInput w-75 mr-2 searchMultiselect" maxlength="50" placeholder="Search here..">
+                                <img src="./assets/images/searchbtn.png" class="searchMultiselectButton" style="height: 30px; width: 30px; cursor: pointer;">
+                            </div>
+
+                            <label class="d-flex align-items-center searchDivs" for="one"><input class="mr-2" type="checkbox" id="one" onchange="checkboxStatusChange()"
+                                    value="one" />
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';" style="height: 30px; width: 30px;">
+                                    <div>
+                                        <p class="mb-0">Usama ZAM</p>
+                                        <p class="mb-0" style="color: #727272; font-size: 11px; font-weight: 400;">Electrician
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="d-flex align-items-center searchDivs" for="two"><input class="mr-2" type="checkbox" id="two" onchange="checkboxStatusChange()"
+                                    value="two" />
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';" style="height: 30px; width: 30px;">
+                                    <div>
+                                        <p class="mb-0">Hassam ZAM</p>
+                                        <p class="mb-0" style="color: #727272; font-size: 11px; font-weight: 400;">Electrician
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="d-flex align-items-center searchDivs" for="three"><input class="mr-2" type="checkbox" id="three" onchange="checkboxStatusChange()"
+                                    value="three" />
+                                <div class="consultantUser"><img src="./assets/images/user.png" alt=""
+                                        onerror="this.onerror=null;this.src='/images/profile.png';" style="height: 30px; width: 30px;">
+                                    <div>
+                                        <p class="mb-0">Ahmad ZAM</p>
+                                        <p class="mb-0" style="color: #727272; font-size: 11px; font-weight: 400;">Electrician
+                                        </p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <div class="d-flex align-items-center justify-content-end p-3">
+                                <button type="button" class="journeyModalCloseButton" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="pl-3 pr-3 d-flex align-items-center journeyModalSubmitButton"
+                                    style="height: 25px;">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <img src="./assets/images/grid-active.png" class="img-fluid mr-2 gridList"
                     style="height:30px; width:30px;">
@@ -897,6 +958,7 @@
                                         ADDRESS
                                     </p>
                                 </div>
+                                <input type="text" name="" id="mapSearchInputdd">
 
                                 <input type="text" id="mapSearchInput" placeholder="Type here.."
                                     class="selectDropdown pl-2">
@@ -2962,7 +3024,7 @@
             </div>
 
             <div class="col-md-12 col-lg-4">
-                <div class="dashboardCards" style="height: 225px;">
+                <div class="dashboardCards" style="height: 225px; overflow: hidden;">
                     <div class="d-flex align-items-center">
                         <h6 style="font-size: 13px; font-weight: 500; margin-bottom: 0; margin-left: 5px;">Destinations
                             status
@@ -2978,6 +3040,7 @@
                     </div>
                     <!-- <div id="donutChartJourneyDashboard" class="mt-md-4 mt-lg-0" style="margin-top: -26px; text-align: -webkit-center;">
                     </div> -->
+                    <div id="container" style="height: 188px; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -3047,7 +3110,8 @@
 
                                     <div class="ml-auto">
                                         <p class="destinationTime mb-1" style="color: #47CA5B;">Completed</p>
-                                        <img src="./assets/images/dragdots.png" class="float-right" style="width: 8px; height: 13px;">
+                                        <img src="./assets/images/dragdots.png" class="float-right"
+                                            style="width: 8px; height: 13px;">
                                     </div>
                                 </div>
 
@@ -3063,7 +3127,8 @@
                                     </div>
 
                                     <div class="ml-auto">
-                                        <img src="./assets/images/dragdots.png" class="float-right" style="width: 8px; height: 13px;">
+                                        <img src="./assets/images/dragdots.png" class="float-right"
+                                            style="width: 8px; height: 13px;">
                                     </div>
                                 </div>
                             </div>
