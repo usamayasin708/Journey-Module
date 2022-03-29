@@ -207,13 +207,6 @@ $(document).on('click', ".modalInModal", function () {
 // let map;
 
 $(function () {
-    var map = new google.maps.Map(document.getElementById('addDestinationMap'), {
-        center: {
-            lat: 27.72,
-            lng: 85.36
-        },
-        Zoom: 15
-    });
 
     var map = new google.maps.Map(document.getElementById('showDestinationMap'), {
         center: {
@@ -224,6 +217,14 @@ $(function () {
     });
 
     var map = new google.maps.Map(document.getElementById('showDestinationMapDashboard'), {
+        center: {
+            lat: 27.72,
+            lng: 85.36
+        },
+        Zoom: 15
+    });
+
+    var map = new google.maps.Map(document.getElementById('addDestinationMap'), {
         center: {
             lat: 27.72,
             lng: 85.36
@@ -459,4 +460,9 @@ $(document).on('click', '.searchMultiselectButton', function () {
             $(this).show();
         }
     });
+});
+
+//===Dragable Divs===//
+$(function () {
+    $(".droppable, .ui-sortable").sortable();
 });
