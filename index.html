@@ -808,10 +808,10 @@
                                         <img src="./assets/images/dragdrop.png" />
                                     </div>
                                     <div class="text-center">
-                                        <p class="drag-drop">Drag or drop your files here
+                                        <p class="drag-drop">Drag and drop your image here
                                             <br><label>or <mark style="color: #42A4DF; background: none;">Browse
                                                     Files</mark>
-                                                <input type="file" accept="image/*" class="mediaInput"></label>
+                                                <input type="file" accept="image/*" class="mediaInput" multiple></label>
                                         </p>
                                     </div>
                                 </div>
@@ -958,7 +958,9 @@
                                         ADDRESS
                                     </p>
                                 </div>
-                                <input type="text" name="" id="mapSearchInputdd">
+                                <input type="text" name="" id="mapLat">
+                                <input type="text" name="" id="mapLng">
+
 
                                 <input type="text" id="mapSearchInput" placeholder="Type here.."
                                     class="selectDropdown pl-2">
@@ -3040,7 +3042,7 @@
                     </div>
                     <!-- <div id="donutChartJourneyDashboard" class="mt-md-4 mt-lg-0" style="margin-top: -26px; text-align: -webkit-center;">
                     </div> -->
-                    <div id="container" style="height: 188px; width: 100%;"></div>
+                    <div id="donutChartJourneyDashboard" style="height: 188px; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -3048,7 +3050,7 @@
         <!-- Map -->
         <div class="row mt-4 mb-4">
             <div class="col-lg-7 col-md-12 p-0">
-                <div id="showDestinationMap"></div>
+                <div id="showDestinationMapDashboard"></div>
             </div>
 
             <div class="col-lg-5 col-md-12 customScrollbar" style="height: 60vh; overflow: auto;">

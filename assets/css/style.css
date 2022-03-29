@@ -592,6 +592,10 @@ input[type="date"]{
     height: 60vh;
 }
 
+#showDestinationMapDashboard{
+    height: 51vh;
+}
+
 #mapSearchInput{
     left: 0 !important;
     z-index: 999 !important;
@@ -886,4 +890,8 @@ input[type="date"]{
 
 #mySelectOptions label:hover {
   background-color: #F2F2F2;
+}
+
+.pac-container {
+    z-index: 99999999999 !important;
 }
